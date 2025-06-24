@@ -18,7 +18,9 @@
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsStringAsync();
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(content);
+                return content;
             }
             else
             {

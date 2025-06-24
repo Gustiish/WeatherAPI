@@ -2,14 +2,34 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Weather API</title>
+
+
 </head>
 <body>
 
-    <h1>Get your weather</h1>
+    <h1>Weather API</h1>
 
+    <input type="text" id="city" />
+    <button onclick="fetchWeather">Get weather</button>
+
+    <p id="content"></p>
+    
+    <script>
+        
+
+        async function fetchWeather() {
+            const city = document.getElementById("city").value;
+            const response = await fetch(`https://localhost:7090//weather/Stockholm`);
+            const data = await response.json();
+
+            const weather = JSON.parse(data)
+
+            document.getElementById("content").textContent = weather
+        }
+
+    </script>
 </body>
 </html>
 
 
-<script></script>
