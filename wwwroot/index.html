@@ -11,19 +11,19 @@
     <h1>Weather API</h1>
 
     <input type="text" id="city" />
-    <button onclick="fetchWeather">Get weather</button>
+    <button onclick="fetchWeather()">Get weather</button>
 
-    <p id="content"></p>
+    <pre id="content"></pre>
     
     <script>
         
 
         async function fetchWeather() {
             const city = document.getElementById("city").value;
-            const response = await fetch(`https://localhost:7090//weather/Stockholm`);
-            const data = await response.json();
+            const response = await fetch(`/weather/${city}`);
+            const data = await response.json(); 
 
-            const weather = JSON.parse(data)
+            const weather = JSON.stringify(data, null, 2)
 
             document.getElementById("content").textContent = weather
         }
