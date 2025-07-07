@@ -1,3 +1,5 @@
+using StackExchange.Redis;
+
 namespace WeatherAPI
 {
     public class Program
@@ -11,7 +13,11 @@ namespace WeatherAPI
                 var apiKey = configuration["ApiKeys:WeatherApi"];
             });
 
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
 
+
+            builder.Services.AddSingleton<IConnectionMultiplexer>(redis);
+            builder.Services.AddScoped(s => s.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
 
             var app = builder.Build();
 
